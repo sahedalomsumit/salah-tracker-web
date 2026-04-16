@@ -4,7 +4,7 @@
 [![React](https://img.shields.io/badge/react-%2320232a.svg?style=for-the-badge&logo=react&logoColor=%2361DAFB)](https://reactjs.org/)
 [![TailwindCSS](https://img.shields.io/badge/tailwindcss-%2338B2AC.svg?style=for-the-badge&logo=tailwind-css&logoColor=white)](https://tailwindcss.com/)
 
-A premium, mindful prayer companion for the modern Muslim. **Salah Tracker** is designed to help you build consistency in your spiritual journey through effortless logging, insightful analytics, and a beautiful, distraction-free interface.
+A premium, mindful prayer companion for the modern Muslim. **Salah Tracker App** is designed to help you build consistency in your spiritual journey through effortless logging, insightful analytics, and a beautiful, distraction-free interface.
 
 > [!NOTE]
 > This repository contains the web landing page and companion site for the Salah Tracker ecosystem.
@@ -16,7 +16,7 @@ A premium, mindful prayer companion for the modern Muslim. **Salah Tracker** is 
 
 - **🚫 100% Ad-Free**: No interruptions, no banners, no distractions. Just you and your goals.
 - **📝 Effortless Logging**: Track Fajr, Dhuhr, Asr, Maghrib, and Isha with a single tap.
-- **📊 Advanced Analytics**: 
+- **📊 Advanced Analytics**:
   - Dynamic dashboard with completion rates.
   - 7-Day stacked bar charts for habit visualization.
   - Weekly distribution pie charts.
@@ -63,6 +63,7 @@ A premium, mindful prayer companion for the modern Muslim. **Salah Tracker** is 
 ### Development
 
 Run the development server with Hot Module Replacement (HMR):
+
 ```bash
 npm run dev
 ```
@@ -70,9 +71,11 @@ npm run dev
 ### Production
 
 Build the project for production:
+
 ```bash
 npm run build
 ```
+
 The output will be available in the `dist/` directory, ready to be deployed to GitHub Pages or any static hosting service.
 
 ---

@@ -68,7 +68,7 @@ export default function Header() {
                     <Link to="/" onClick={closeMenu} className="flex items-center group cursor-pointer z-[60]">
                         <img
                             className="sas-logo transition-transform group-hover:scale-105 w-32"
-                            src="/img/logo-sahed-alom-sumit.png"
+                            src={`${import.meta.env.BASE_URL}img/logo-sahed-alom-sumit.png`}
                             alt="Sahed Alom Sumit Official Logo"
                         />
                         <div className="hidden md:block h-6 w-[1px] bg-white/10 mx-4" />

@@ -15,19 +15,19 @@ export default function Home() {
   });
 
   const darkScreenshots = [
-    "/img/salah tracker app - screenshot (1).webp",
-    "/img/salah tracker app - screenshot (2).webp",
-    "/img/salah tracker app - screenshot (3).webp",
-    "/img/salah tracker app - screenshot (4).webp",
-    "/img/salah tracker app - screenshot (5).webp",
+    `${import.meta.env.BASE_URL}img/salah tracker app - screenshot (1).webp`,
+    `${import.meta.env.BASE_URL}img/salah tracker app - screenshot (2).webp`,
+    `${import.meta.env.BASE_URL}img/salah tracker app - screenshot (3).webp`,
+    `${import.meta.env.BASE_URL}img/salah tracker app - screenshot (4).webp`,
+    `${import.meta.env.BASE_URL}img/salah tracker app - screenshot (5).webp`,
   ];
 
   const lightScreenshots = [
-    "/img/salah tracker app - light - screenshot (1).webp",
-    "/img/salah tracker app - light - screenshot (2).webp",
-    "/img/salah tracker app - light - screenshot (3).webp",
-    "/img/salah tracker app - light - screenshot (4).webp",
-    "/img/salah tracker app - light - screenshot (5).webp",
+    `${import.meta.env.BASE_URL}img/salah tracker app - light - screenshot (1).webp`,
+    `${import.meta.env.BASE_URL}img/salah tracker app - light - screenshot (2).webp`,
+    `${import.meta.env.BASE_URL}img/salah tracker app - light - screenshot (3).webp`,
+    `${import.meta.env.BASE_URL}img/salah tracker app - light - screenshot (4).webp`,
+    `${import.meta.env.BASE_URL}img/salah tracker app - light - screenshot (5).webp`,
   ];
 
   const currentScreenshots = showDarkMode ? darkScreenshots : lightScreenshots;
@@ -46,7 +46,7 @@ export default function Home() {
 
             <div className="flex justify-center mb-8">
               <img
-                src="/img/app_icon.png"
+                src={`${import.meta.env.BASE_URL}img/app_icon.png`}
                 alt="Salah Tracker Icon"
                 className="w-20 h-20 md:w-28 md:h-28 shadow-[0_0_50px_rgba(16,185,129,0.3)] rounded-[1.5rem]"
               />
@@ -87,7 +87,7 @@ export default function Home() {
         <RevealOnScroll>
           <div className="w-full bg-[#0a0a0a] border border-emerald-500/10 rounded-[2rem] md:rounded-[3rem] overflow-hidden relative mb-24 shadow-[0_0_60px_rgba(16,185,129,0.08)] group">
             <img
-              src="/img/salah_tracker_feature_graphic.webp"
+              src={`${import.meta.env.BASE_URL}img/salah_tracker_feature_graphic.webp`}
               className="w-full h-auto opacity-95 group-hover:scale-[1.02] group-hover:opacity-100 transition-all duration-[1.5s] ease-out"
               alt="Feature Graphic"
             />

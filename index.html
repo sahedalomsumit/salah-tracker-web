@@ -2,25 +2,610 @@
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
-    <link rel="icon" type="image/png" href="/img/app_icon.png" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Salah Tracker App | Mindful Prayer Companion</title>
-    <meta name="description" content="Salah Tracker – A mindful prayer companion for the modern Muslim. Track your prayers, build consistency, and stay mindful with this 100% ad-free app." />
-    <link rel="canonical" href="https://sahedalomsumit.com/" />
-    
-    <!-- Fonts -->
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=JetBrains+Mono:ital,wght@0,100..800;1,100..800&display=swap" rel="stylesheet">
+    <title>Salah Tracker App – A Mindful Prayer Companion</title>
+    <meta
+      name="description"
+      content="Salah Tracker – A mindful prayer companion for the modern Muslim. Track your prayers, build consistency, and stay mindful with this 100% ad-free app."
+    />
 
-    <!-- Meta Tags -->
-    <meta property="og:title" content="Salah Tracker App | Mindful Prayer Companion" />
-    <meta property="og:description" content="Salah Tracker – A mindful prayer companion for the modern Muslim. Track your prayers, build consistency, and stay mindful with this 100% ad-free app." />
-    <meta property="og:type" content="website" />
-    <meta name="twitter:card" content="summary_large_image" />
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;700;900&family=JetBrains+Mono:wght@400;700&display=swap"
+      rel="stylesheet"
+    />
+
+    <!-- Scripts -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+
+    <!-- Custom Styles -->
+    <link rel="stylesheet" href="style.css" />
   </head>
-  <body>
-    <div id="root"></div>
-    <script type="module" src="/src/main.jsx"></script>
+  <body class="bg-[#050505] text-white">
+    <div id="cursor" class="hidden md:block"></div>
+    <div class="aura" id="aura-1" style="top: -10%; left: -10%"></div>
+    <div class="aura" id="aura-2" style="bottom: -10%; right: -10%"></div>
+
+    <!-- Top Bar -->
+    <div
+      class="w-full bg-[#080808] py-2.5 px-4 flex flex-col md:flex-row justify-center items-center text-[10px] font-mono tracking-[0.2em] border-b border-white/5 z-[60] relative"
+    >
+      <div class="flex items-center gap-2 text-emerald-500">
+        <span class="w-2 h-2 bg-emerald-500 rounded-full animate-pulse"></span>
+        <span class="text-white">SYSTEM_STATUS:</span>
+        OPEN FOR COLLABORATIONS
+      </div>
+      <span class="text-white/10 mx-6 hidden md:block">|</span>
+      <div class="flex gap-6 mt-2 md:mt-0">
+        <a
+          href="https://wa.me/+358415765539"
+          class="text-gray-400 hover:text-white transition"
+          target="_blank"
+          rel="noopener noreferrer"
+          >MESSAGE_WHATSAPP »</a
+        >
+        <span class="text-white/10 hidden md:block">|</span>
+      </div>
+    </div>
+
+    <!-- Header -->
+    <header
+      id="main-header"
+      class="sticky top-0 w-full z-[70] sticky-header transition-all py-4"
+    >
+      <div class="px-4 max-w-7xl mx-auto flex items-center justify-between">
+        <a
+          href="index.html"
+          class="flex items-center group cursor-pointer z-[60]"
+        >
+          <img
+            class="sas-logo transition-transform group-hover:scale-105 w-32"
+            src="img/logo-sahed-alom-sumit.png"
+            alt="Sahed Alom Sumit Official Logo"
+          />
+          <div class="hidden md:block h-6 w-[1px] bg-white/10 mx-4"></div>
+          <div
+            class="hidden lg:block text-[9px] font-mono text-gray-500 uppercase tracking-tighter"
+          >
+            Designer & Developer<br />
+            <span class="text-emerald-500 italic">Availability: High</span>
+          </div>
+        </a>
+
+        <!-- Desktop Nav -->
+        <nav class="hidden md:flex items-center gap-8 lg:gap-12">
+          <a
+            href="index.html"
+            class="text-[10px] font-mono font-bold tracking-widest text-violet-400 border-b border-violet-500 pb-1 transition-all"
+            >./HOME</a
+          >
+          <a
+            href="privacy-policy.html"
+            class="text-[10px] font-mono font-bold tracking-widest text-white hover:text-violet-400 border-b border-transparent hover:border-violet-500/50 pb-1 transition-all"
+            >./PRIVACY POLICY</a
+          >
+          <a
+            href="data-deletion.html"
+            class="text-[10px] font-mono font-bold tracking-widest text-white hover:text-violet-400 border-b border-transparent hover:border-violet-500/50 pb-1 transition-all"
+            >./DATA DELETION</a
+          >
+        </nav>
+
+        <!-- Mobile Hamburger Button -->
+        <button
+          id="menu-btn"
+          class="md:hidden z-[80] relative w-10 h-10 flex items-center justify-center focus:outline-none"
+          aria-label="Toggle Menu"
+        >
+          <div class="w-6 flex flex-col items-end gap-1.5">
+            <span
+              class="block h-0.5 bg-white transition-all duration-300 w-6"
+            ></span>
+            <span
+              class="block h-0.5 bg-white transition-all duration-300 w-4"
+            ></span>
+            <span
+              class="block h-0.5 bg-white transition-all duration-300 w-5"
+            ></span>
+          </div>
+        </button>
+      </div>
+    </header>
+
+    <!-- Fullscreen Mobile Overlay -->
+    <div
+      id="mobile-menu"
+      class="fixed inset-0 bg-[#0a0a0a] z-[55] flex flex-col items-center justify-center md:hidden"
+    >
+      <div class="flex flex-col items-center gap-8">
+        <a href="index.html" class="group flex items-baseline gap-4">
+          <span class="font-mono text-violet-500 text-xs">01_</span>
+          <span
+            class="text-4xl sm:text-5xl font-black tracking-tighter uppercase transition-colors text-white"
+            >HOME</span
+          >
+        </a>
+        <a href="privacy-policy.html" class="group flex items-baseline gap-4">
+          <span class="font-mono text-violet-500 text-xs">02_</span>
+          <span
+            class="text-4xl sm:text-5xl font-black tracking-tighter uppercase transition-colors text-white/40 group-hover:text-white"
+            >PRIVACY POLICY</span
+          >
+        </a>
+        <a href="data-deletion.html" class="group flex items-baseline gap-4">
+          <span class="font-mono text-violet-500 text-xs">03_</span>
+          <span
+            class="text-4xl sm:text-5xl font-black tracking-tighter uppercase transition-colors text-white/40 group-hover:text-white"
+            >DATA DELETION</span
+          >
+        </a>
+      </div>
+    </div>
+
+    <!-- Main Content -->
+    <main>
+      <section class="pt-32 pb-20 px-4 max-w-7xl mx-auto min-h-screen">
+        <!-- Hero Section -->
+        <div
+          class="reveal mb-20 text-center flex flex-col items-center justify-center"
+        >
+          <div
+            class="font-mono text-emerald-500 text-xs tracking-[0.4em] font-bold uppercase mb-6"
+          >
+            APP_MODULE // SALAH_TRACKER
+          </div>
+
+          <div class="flex justify-center mb-8">
+            <img
+              src="img/app_icon.jpg"
+              alt="Salah Tracker Icon"
+              class="w-20 h-20 md:w-28 md:h-28 shadow-[0_0_50px_rgba(16,185,129,0.3)] rounded-[1.5rem]"
+            />
+          </div>
+
+          <h1
+            class="text-5xl md:text-8xl font-black tracking-tighter text-white leading-none mb-6 uppercase"
+          >
+            Salah <span class="text-emerald-500">Tracker App</span>
+          </h1>
+          <p class="max-w-3xl text-gray-400 text-xl font-light leading-relaxed">
+            We believe your spiritual journey should be sacred and free from
+            distractions.
+            <strong class="text-white">Salah Tracker App</strong> is the
+            ultimate
+            <strong
+              class="text-emerald-500 border border-emerald-500/30 bg-emerald-500/10 px-2 py-0.5 rounded uppercase tracking-wider text-sm mx-1"
+              >100% Ad-Free</strong
+            >
+            solution for tracking daily prayers, building consistent habits, and
+            achieving personal growth.
+          </p>
+
+          <div class="mt-12 flex flex-wrap justify-center gap-4">
+            <button
+              class="bg-emerald-500 hover:bg-emerald-400 text-gray-900 px-8 py-4 rounded-full font-bold transition-all shadow-[0_0_20px_rgba(16,185,129,0.3)] hover:shadow-[0_0_30px_rgba(16,185,129,0.5)]"
+            >
+              Coming Soon to Android
+            </button>
+            <a
+              href="https://github.com/sahedalomsumit/salah-tracker-app"
+              target="_blank"
+              rel="noreferrer"
+              class="bg-transparent border border-white/20 hover:border-emerald-500 hover:bg-emerald-500/5 text-white px-8 py-4 rounded-full font-bold transition-all"
+            >
+              View on GitHub
+            </a>
+          </div>
+        </div>
+
+        <!-- Feature Graphic -->
+        <div
+          class="reveal w-full bg-[#0a0a0a] border border-emerald-500/10 rounded-[2rem] md:rounded-[3rem] overflow-hidden relative mb-24 shadow-[0_0_60px_rgba(16,185,129,0.08)] group"
+        >
+          <img
+            src="img/salah_tracker_feature_graphic.jpg"
+            class="w-full h-auto opacity-95 group-hover:scale-[1.02] group-hover:opacity-100 transition-all duration-[1.5s] ease-out"
+            alt="Feature Graphic"
+          />
+        </div>
+
+        <!-- App Motivation -->
+        <div
+          class="reveal mb-24 text-center max-w-4xl mx-auto bg-gradient-to-br from-white/5 to-[#0a0a0a] border border-white/10 p-10 md:p-16 rounded-[3rem] shadow-2xl"
+        >
+          <h2 class="text-3xl md:text-5xl font-black text-white mb-8">
+            Why Salah Tracker App?
+          </h2>
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-8 text-left">
+            <div class="space-y-4">
+              <div
+                class="text-red-500/80 bg-red-500/10 border border-red-500/20 w-12 h-12 rounded-2xl flex items-center justify-center text-xl"
+              >
+                🚫
+              </div>
+              <h3 class="text-xl font-bold text-white">100% Ad-Free</h3>
+              <p class="text-gray-400 leading-relaxed font-light">
+                Zero interruptions. No pop-ups, no banners, and no video
+                ads—just you and your spiritual goals.
+              </p>
+            </div>
+            <div class="space-y-4">
+              <div
+                class="text-violet-400 bg-violet-500/10 border border-violet-500/20 w-12 h-12 rounded-2xl flex items-center justify-center text-xl"
+              >
+                💎
+              </div>
+              <h3 class="text-xl font-bold text-white">Premium UI</h3>
+              <p class="text-gray-400 leading-relaxed font-light">
+                Experience a stunning interface with translucent "glassmorphism"
+                effects, smooth blurs, and premium animations.
+              </p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Screenshots Showcase -->
+        <div class="reveal mb-32">
+          <div class="flex flex-col items-center mb-16 gap-6">
+            <h2
+              class="text-3xl md:text-5xl font-black text-white uppercase tracking-tighter text-center"
+            >
+              A Beautiful View
+            </h2>
+            <div
+              class="bg-white/5 border border-white/10 p-1 rounded-full flex items-center gap-2 relative"
+            >
+              <div
+                id="toggle-indicator"
+                class="absolute inset-y-1 w-[calc(50%-4px)] bg-white/10 border border-white/20 rounded-full transition-all duration-300 left-1"
+              ></div>
+              <button
+                id="dark-mode-btn"
+                class="relative px-6 py-2 rounded-full font-bold text-sm tracking-wide transition-colors text-white"
+              >
+                DARK MODE
+              </button>
+              <button
+                id="light-mode-btn"
+                class="relative px-6 py-2 rounded-full font-bold text-sm tracking-wide transition-colors text-gray-500 hover:text-white"
+              >
+                LIGHT MODE
+              </button>
+            </div>
+            <p class="text-gray-400 text-sm font-light italic">
+              Click to toggle interface theme
+            </p>
+          </div>
+
+          <div
+            class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-4 md:gap-6 screenshot-grid"
+          >
+            <div
+              class="aspect-[9/19] bg-[#0a0a0a] border border-white/10 rounded-[2rem] overflow-hidden shadow-2xl group"
+            >
+              <img
+                src="img/salah tracker app - screenshot (1).jpeg"
+                class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700 screenshot-img"
+                alt="App View 1"
+                loading="lazy"
+              />
+            </div>
+            <div
+              class="aspect-[9/19] bg-[#0a0a0a] border border-white/10 rounded-[2rem] overflow-hidden shadow-2xl group"
+            >
+              <img
+                src="img/salah tracker app - screenshot (2).jpeg"
+                class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700 screenshot-img"
+                alt="App View 2"
+                loading="lazy"
+              />
+            </div>
+            <div
+              class="aspect-[9/19] bg-[#0a0a0a] border border-white/10 rounded-[2rem] overflow-hidden shadow-2xl group"
+            >
+              <img
+                src="img/salah tracker app - screenshot (3).jpeg"
+                class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700 screenshot-img"
+                alt="App View 3"
+                loading="lazy"
+              />
+            </div>
+            <div
+              class="aspect-[9/19] bg-[#0a0a0a] border border-white/10 rounded-[2rem] overflow-hidden shadow-2xl group"
+            >
+              <img
+                src="img/salah tracker app - screenshot (4).jpeg"
+                class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700 screenshot-img"
+                alt="App View 4"
+                loading="lazy"
+              />
+            </div>
+            <div
+              class="aspect-[9/19] bg-[#0a0a0a] border border-white/10 rounded-[2rem] overflow-hidden shadow-2xl group"
+            >
+              <img
+                src="img/salah tracker app - screenshot (5).jpeg"
+                class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700 screenshot-img"
+                alt="App View 5"
+                loading="lazy"
+              />
+            </div>
+            <div
+              class="aspect-[9/19] bg-[#0a0a0a] border border-white/10 rounded-[2rem] overflow-hidden shadow-2xl group"
+            >
+              <img
+                src="img/salah tracker app - screenshot (6).jpeg"
+                class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700 screenshot-img"
+                alt="App View 6"
+                loading="lazy"
+              />
+            </div>
+          </div>
+        </div>
+
+        <!-- Key Features -->
+        <div class="reveal mb-32">
+          <div class="text-center mb-16">
+            <h2
+              class="text-4xl md:text-5xl font-black text-white uppercase tracking-tighter"
+            >
+              Key Features
+            </h2>
+          </div>
+
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+            <div
+              class="bg-[#0a0a0a] border border-white/5 p-8 md:p-10 rounded-3xl hover:border-emerald-500/30 transition-all"
+            >
+              <h3
+                class="text-2xl font-bold text-emerald-500 mb-4 flex items-center gap-3"
+              >
+                <span class="text-xl">🔹</span> Effortless Daily Logging
+              </h3>
+              <ul class="text-gray-400 space-y-3 font-light list-disc pl-5">
+                <li>
+                  Log Fajr, Dhuhr, Asr, Maghrib, and Isha with a single tap.
+                </li>
+                <li>
+                  Quickly classify prayers as On Time, Qaza (late/made up), or
+                  Missed.
+                </li>
+                <li>
+                  <strong class="text-white">Historical Editing:</strong> Forgot
+                  to log yesterday? Easily go back and update your records.
+                </li>
+              </ul>
+            </div>
+
+            <div
+              class="bg-[#0a0a0a] border border-white/5 p-8 md:p-10 rounded-3xl hover:border-violet-500/30 transition-all"
+            >
+              <h3
+                class="text-2xl font-bold text-violet-400 mb-4 flex items-center gap-3"
+              >
+                <span class="text-xl">📊</span> Advanced Analytics
+              </h3>
+              <ul class="text-gray-400 space-y-3 font-light list-disc pl-5">
+                <li>
+                  <strong class="text-white">Dynamic Dashboard:</strong>
+                  Instantly see completion rates for today, this week, and this
+                  month.
+                </li>
+                <li>
+                  <strong class="text-white">7-Day Overview:</strong> A
+                  beautiful stacked bar chart visualizing your habit over the
+                  past week.
+                </li>
+                <li>
+                  <strong class="text-white">Weekly Distribution:</strong>
+                  Comprehensive pie chart breakdowns of your consistency.
+                </li>
+              </ul>
+            </div>
+
+            <div
+              class="bg-[#0a0a0a] border border-white/5 p-8 md:p-10 rounded-3xl hover:border-emerald-500/30 transition-all"
+            >
+              <h3
+                class="text-2xl font-bold text-white mb-4 flex items-center gap-3"
+              >
+                <span class="text-emerald-500 text-xl">🔥</span> Build Your
+                Streak
+              </h3>
+              <p class="text-gray-400 font-light leading-relaxed">
+                Keep the fire burning! Stay motivated with a Current Streak
+                counter that tracks your consecutive days of perfect prayer
+                logs.
+              </p>
+            </div>
+
+            <div
+              class="bg-[#0a0a0a] border border-white/5 p-8 md:p-10 rounded-3xl hover:border-violet-500/30 transition-all"
+            >
+              <h3
+                class="text-2xl font-bold text-white mb-4 flex items-center gap-3"
+              >
+                <span class="text-violet-400 text-xl">🔒</span> Secure Cloud
+                Sync
+              </h3>
+              <p class="text-gray-400 font-light leading-relaxed">
+                Sign in with Google to securely back up your data to the cloud.
+                Access your logs across all your devices instantly.
+              </p>
+            </div>
+
+            <div
+              class="bg-[#0a0a0a] border border-white/5 p-8 md:p-10 rounded-3xl hover:border-emerald-500/30 transition-all col-span-1 md:col-span-2 grid grid-cols-1 md:grid-cols-2 gap-8"
+            >
+              <div>
+                <h3
+                  class="text-2xl font-bold text-white mb-4 flex items-center gap-3"
+                >
+                  <span class="text-emerald-500 text-xl">🌍</span> Multilingual
+                  & Flexible
+                </h3>
+                <ul class="text-gray-400 space-y-3 font-light list-disc pl-5">
+                  <li>Fully localized in English and Bangla (বাংলা).</li>
+                  <li>
+                    Features Light, Dark, and System theme modes to suit any
+                    preference.
+                  </li>
+                </ul>
+              </div>
+              <div>
+                <h3
+                  class="text-2xl font-bold text-white mb-4 flex items-center gap-3"
+                >
+                  <span class="text-emerald-500 text-xl">🔔</span> Daily Log
+                  Reminders
+                </h3>
+                <p class="text-gray-400 font-light">
+                  Get a gentle, automated, local notification each night to
+                  ensure you never forget to log your daily progress.
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Support Our Mission -->
+        <div
+          class="reveal mb-32 bg-gradient-to-br from-emerald-500/10 to-violet-500/5 border border-white/10 p-8 md:p-12 rounded-[3rem] shadow-2xl"
+        >
+          <div class="text-center mb-10">
+            <h2 class="text-4xl font-black text-white mb-4">
+              Support Our Mission
+            </h2>
+            <p
+              class="text-gray-400 font-light leading-relaxed max-w-2xl mx-auto"
+            >
+              If you benefit from this ad-free app, you may give Sadaqah to
+              support it for maintenance.
+            </p>
+          </div>
+
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-8 mt-8">
+            <!-- Stripe -->
+            <div
+              class="bg-[#0a0a0a] border border-white/5 p-8 rounded-3xl flex flex-col items-center text-center group hover:border-[#635BFF]/50 transition-all"
+            >
+              <div
+                class="w-16 h-16 bg-[#635BFF]/10 rounded-full flex items-center justify-center mb-6 text-[#635BFF]"
+              >
+                <svg
+                  class="w-8 h-8"
+                  fill="none"
+                  stroke="currentColor"
+                  viewBox="0 0 24 24"
+                >
+                  <path
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    stroke-width="2"
+                    d="M3 10h18M7 15h1m4 0h1m-7 4h12a3 3 0 003-3V8a3 3 0 00-3-3H6a3 3 0 00-3 3v8a3 3 0 003 3z"
+                  ></path>
+                </svg>
+              </div>
+              <h3 class="text-xl font-bold text-white mb-4">
+                International (Stripe)
+              </h3>
+              <p class="text-gray-400 font-light mb-8 flex-grow">
+                Fast and secure international donations via Stripe.
+              </p>
+              <a
+                href="https://donate.stripe.com/3cI8wO6bWcqd7F46az8AE01"
+                target="_blank"
+                rel="noreferrer"
+                class="w-full bg-[#635BFF] hover:bg-[#524BFF] text-white px-6 py-4 rounded-xl font-bold transition-all flex justify-center items-center gap-2"
+                >Donate via Stripe</a
+              >
+            </div>
+
+            <!-- bKash -->
+            <div
+              class="bg-[#0a0a0a] border border-white/5 p-8 rounded-3xl flex flex-col items-center text-center group hover:border-[#E2136E]/50 transition-all"
+            >
+              <div
+                class="w-16 h-16 bg-[#E2136E]/10 rounded-full flex items-center justify-center mb-6 text-[#E2136E]"
+              >
+                <span class="font-bold text-2xl">b</span>
+              </div>
+              <h3 class="text-xl font-bold text-white mb-4">
+                Bangladesh (bKash)
+              </h3>
+              <p class="text-gray-400 font-light mb-6 flex-grow">
+                For Bangladeshi people, you can send Sadaqah via bKash Send
+                Money to the following number:
+              </p>
+              <div
+                class="w-full bg-white/5 border border-[#E2136E]/30 rounded-xl p-4 flex flex-col items-center justify-center"
+              >
+                <span
+                  class="text-2xl font-black text-[#E2136E] tracking-widest mb-1"
+                  >01773615582</span
+                >
+                <span
+                  class="text-[10px] text-gray-500 uppercase tracking-widest font-mono"
+                  >Personal Account</span
+                >
+              </div>
+            </div>
+          </div>
+
+          <p
+            class="text-emerald-500 font-bold italic text-center mt-12 bg-emerald-500/10 py-4 px-6 rounded-2xl mx-auto max-w-xl"
+          >
+            Take control of your spiritual life today. Download Salah Tracker
+            App—the distraction-free, ad-free path to a consistent prayer habit.
+          </p>
+        </div>
+
+        <!-- Legal Links -->
+        <div
+          class="reveal bg-[#0a0a0a] border border-white/5 p-8 text-center rounded-3xl shadow-[inset_0_0_50px_rgba(16,185,129,0.05)] flex flex-col md:flex-row items-center justify-center gap-6"
+        >
+          <a
+            href="privacy-policy.html"
+            class="inline-flex items-center gap-3 text-gray-500 font-mono text-sm hover:text-emerald-500 transition-colors uppercase tracking-widest group"
+          >
+            <span>Privacy Policy</span>
+            <span class="group-hover:translate-x-1 transition-transform"
+              >&rarr;</span
+            >
+          </a>
+          <span class="text-white/10 hidden md:inline">|</span>
+          <a
+            href="data-deletion.html"
+            class="inline-flex items-center gap-3 text-gray-500 font-mono text-sm hover:text-red-500 transition-colors uppercase tracking-widest group"
+          >
+            <span>Data Deletion Request</span>
+            <span class="group-hover:translate-x-1 transition-transform"
+              >&rarr;</span
+            >
+          </a>
+        </div>
+      </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="py-8 bg-black relative overflow-hidden">
+      <div class="max-w-7xl mx-auto items-center">
+        <p
+          class="font-mono text-[9px] text-gray-400 uppercase tracking-widest text-center"
+        >
+          © <span id="year"></span> Sahed Alom Sumit // Built with precision and
+          clean code
+        </p>
+      </div>
+    </footer>
+
+    <script src="script.js"></script>
+    <script>
+      document.getElementById("year").textContent = new Date().getFullYear();
+    </script>
   </body>
 </html>

@@ -1,6 +1,8 @@
 # 🕋 Salah Tracker Web
 
 <div align="center">
+  <img src="img/salah-tracker-app.png" alt="Salah Tracker App Feature Image" width="800">
+  <br>
   <a href="https://play.google.com/store/apps/details?id=com.sahed.salah_tracker" target="_blank">
     <img src="https://play.google.com/intl/en_us/badges/static/images/badges/en_badge_web_generic.png" alt="Get it on Google Play" height="80">
   </a>

@@ -1,12 +1,15 @@
 /* Base Styles */
 :root {
   --accent: #8b5cf6;
+  --accent-hover: #7c3aed;
   --emerald: #10b981;
   --bg: #050505;
+  --topbar: #080808;
   --card-bg: rgba(255, 255, 255, 0.02);
   --border: rgba(255, 255, 255, 0.08);
   --text-main: #ffffff;
   --text-muted: #94a3b8;
+  --grid-line: rgba(255, 255, 255, 0.03);
 }
 
 * {
@@ -16,19 +19,34 @@
 }
 
 body {
-  font-family: "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  font-family: "Inter", sans-serif;
   background-color: var(--bg);
-  background-image:
-    linear-gradient(rgba(255, 255, 255, 0.02) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(255, 255, 255, 0.02) 1px, transparent 1px);
+  background-image: 
+    linear-gradient(var(--grid-line) 1px, transparent 1px),
+    linear-gradient(90deg, var(--grid-line) 1px, transparent 1px);
   background-size: 50px 50px;
   color: var(--text-main);
   overflow-x: hidden;
-  line-height: 1.5;
+  line-height: 1.6;
 }
 
-.mono {
-  font-family: "JetBrains Mono", "Courier New", monospace;
+/* Typography Utilities */
+.font-mono {
+  font-family: "JetBrains Mono", monospace;
+}
+
+.heading-bold {
+  font-weight: 900;
+  letter-spacing: -0.05em;
+  text-transform: uppercase;
+}
+
+.tech-label {
+  font-family: "JetBrains Mono", monospace;
+  font-size: 10px;
+  text-transform: uppercase;
+  letter-spacing: 0.2em;
+  color: var(--text-muted);
 }
 
 /* Custom Scrollbar */
@@ -49,33 +67,44 @@ body {
   background: var(--accent);
 }
 
-/* Bento Cards */
+/* Bento Cards & Glassmorphism */
 .bento-card {
   background: var(--card-bg);
   border: 1px solid var(--border);
   backdrop-filter: blur(12px);
   border-radius: 24px;
   transition: all 0.5s cubic-bezier(0.23, 1, 0.32, 1);
+  overflow: hidden;
 }
 
 .bento-card:hover {
   border-color: var(--accent);
   background: rgba(255, 255, 255, 0.04);
-  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.5);
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4), 0 0 20px rgba(139, 92, 246, 0.1);
   transform: translateY(-4px);
 }
 
+/* Aura Background Effects */
 .aura {
   position: fixed;
   width: 800px;
   height: 800px;
-  background: radial-gradient(circle, rgba(139, 92, 246, 0.08) 0%, rgba(0, 0, 0, 0) 70%);
   border-radius: 50%;
   filter: blur(100px);
   z-index: -1;
   pointer-events: none;
+  opacity: 0.15;
 }
 
+#aura-1 {
+  background: radial-gradient(circle, var(--accent) 0%, transparent 70%);
+}
+
+#aura-2 {
+  background: radial-gradient(circle, var(--emerald) 0%, transparent 70%);
+}
+
+/* Custom Cursor */
 #cursor {
   width: 12px;
   height: 12px;
@@ -85,42 +114,105 @@ body {
   pointer-events: none;
   z-index: 9999;
   mix-blend-mode: difference;
+  transition: transform 0.1s ease;
 }
 
+/* Sticky Header Refinement */
 .sticky-header {
-  background: rgba(5, 5, 5, 0.85);
-  backdrop-filter: blur(20px);
-  border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+  background: rgba(10, 10, 10, 0.8);
+  backdrop-filter: blur(16px);
+  border-bottom: 1px solid var(--border);
 }
 
-.glow-text {
-  text-shadow: 0 0 20px rgba(16, 185, 129, 0.3);
+/* Button & CTA Styles */
+.cta-primary {
+  background: var(--card-bg);
+  border: 1px solid var(--border);
+  backdrop-filter: blur(8px);
+  color: #ffffff;
+  border-radius: 9999px;
+  padding: 1rem 2rem;
+  font-weight: 900;
+  font-size: 0.75rem;
+  text-transform: uppercase;
+  letter-spacing: 0.2em;
+  transition: all 0.3s ease;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
 }
 
-/* Mobile Menu */
-#mobile-menu {
-  display: none;
-  opacity: 0;
-  transform: translateX(100%);
+.cta-primary:hover {
+  border-color: var(--accent);
+  transform: translateY(-4px);
+  box-shadow: 0 10px 25px rgba(139, 92, 246, 0.2);
 }
 
-#mobile-menu.active {
-  display: flex;
-  opacity: 1;
-  transform: translateX(0);
+.cta-large {
+  transform: scale(1.25);
+  transform-origin: center;
 }
 
-/* Reveal Animation State (handled by JS) */
+.cta-large:hover {
+  transform: scale(1.3) translateY(-4px);
+  box-shadow: 0 15px 30px rgba(139, 92, 246, 0.3);
+}
+
+.cta-secondary {
+  background: #ffffff;
+  color: #000000;
+  border-radius: 9999px;
+  padding: 1rem 2rem;
+  font-weight: 900;
+  font-size: 0.75rem;
+  text-transform: uppercase;
+  letter-spacing: 0.2em;
+  transition: all 0.3s ease;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.cta-secondary:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 10px 25px rgba(255, 255, 255, 0.2);
+}
+
+/* Skill Tags / Badges */
+.skill-tag {
+  padding: 0.5rem 1rem;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 9999px;
+  font-family: "JetBrains Mono", monospace;
+  font-size: 10px;
+  text-transform: uppercase;
+  letter-spacing: 0.2em;
+  color: var(--text-muted);
+  transition: all 0.3s ease;
+}
+
+.skill-tag:hover {
+  border-color: var(--accent);
+  color: #ffffff;
+  background: rgba(139, 92, 246, 0.05);
+}
+
+/* Animations */
 .reveal {
+  opacity: 0;
   visibility: hidden;
 }
 
-/* Dark Mode Toggle */
-.screenshot-grid div {
-  animation: fadeIn 0.5s ease-out forwards;
+@keyframes pulse-emerald {
+  0%, 100% { box-shadow: 0 0 8px #10b981; }
+  50% { box-shadow: 0 0 15px #10b981; }
 }
 
-@keyframes fadeIn {
-  from { opacity: 0; transform: translateY(10px); }
-  to { opacity: 1; transform: translateY(0); }
+.pulse-dot {
+  width: 8px;
+  height: 8px;
+  background-color: var(--emerald);
+  border-radius: 50%;
+  animation: pulse-emerald 2s infinite;
 }
+

@@ -4,25 +4,55 @@ gsap.registerPlugin(ScrollTrigger);
 // Custom Cursor
 const cursor = document.getElementById('cursor');
 if (cursor) {
+  let mouseX = 0;
+  let mouseY = 0;
+  let cursorX = 0;
+  let cursorY = 0;
+
   document.addEventListener('mousemove', (e) => {
-    gsap.to(cursor, { x: e.clientX - 6, y: e.clientY - 6, duration: 0.1 });
+    mouseX = e.clientX;
+    mouseY = e.clientY;
+  });
+
+  const animateCursor = () => {
+    // Smooth lagging effect
+    const easing = 0.15;
+    cursorX += (mouseX - cursorX) * easing;
+    cursorY += (mouseY - cursorY) * easing;
+    
+    cursor.style.transform = `translate3d(${cursorX - 6}px, ${cursorY - 6}px, 0)`;
+    requestAnimationFrame(animateCursor);
+  };
+  animateCursor();
+
+  // Hide cursor when leaving window
+  document.addEventListener('mouseleave', () => {
+    cursor.style.opacity = '0';
+  });
+  document.addEventListener('mouseenter', () => {
+    cursor.style.opacity = '1';
   });
 }
 
-// Aura Background
+// Aura Background Movement
 const aura1 = document.getElementById('aura-1');
 const aura2 = document.getElementById('aura-2');
 if (aura1 && aura2) {
   document.addEventListener('mousemove', (e) => {
+    const moveX = (e.clientX - window.innerWidth / 2) * 0.03;
+    const moveY = (e.clientY - window.innerHeight / 2) * 0.03;
+    
     gsap.to(aura1, {
-      x: (e.clientX - window.innerWidth / 2) * 0.05,
-      y: (e.clientY - window.innerHeight / 2) * 0.05,
-      duration: 2,
+      x: moveX,
+      y: moveY,
+      duration: 3,
+      ease: 'power2.out'
     });
     gsap.to(aura2, {
-      x: -(e.clientX - window.innerWidth / 2) * 0.05,
-      y: -(e.clientY - window.innerHeight / 2) * 0.05,
-      duration: 2,
+      x: -moveX,
+      y: -moveY,
+      duration: 3,
+      ease: 'power2.out'
     });
   });
 }
@@ -31,13 +61,14 @@ if (aura1 && aura2) {
 const header = document.getElementById('main-header');
 window.addEventListener('scroll', () => {
   if (window.scrollY > 50) {
-    header.classList.add('bg-[#0a0a0a]/80', 'backdrop-blur-md', 'py-3');
-    header.classList.remove('py-4');
-  } else {
-    header.classList.remove('bg-[#0a0a0a]/80', 'backdrop-blur-md', 'py-3');
     header.classList.add('py-4');
+    header.classList.remove('py-6');
+  } else {
+    header.classList.remove('py-4');
+    header.classList.add('py-6');
   }
 });
+
 
 // Mobile Menu
 const menuBtn = document.getElementById('menu-btn');

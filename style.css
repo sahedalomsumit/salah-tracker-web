@@ -216,3 +216,42 @@ body {
   animation: pulse-emerald 2s infinite;
 }
 
+/* Mobile Responsiveness */
+@media (max-width: 768px) {
+  .aura {
+    width: 400px;
+    height: 400px;
+    filter: blur(60px);
+    opacity: 0.1;
+  }
+  
+  .bento-card {
+    border-radius: 20px;
+  }
+  
+  .cta-large {
+    transform: scale(1.05);
+    width: 100%;
+    justify-content: center;
+  }
+  
+  .cta-large:hover {
+    transform: scale(1.1) translateY(-2px);
+  }
+
+  .heading-bold {
+    letter-spacing: -0.02em;
+  }
+
+  body {
+    background-size: 30px 30px;
+  }
+
+  .pt-40 { padding-top: 6rem !important; }
+  .pb-32 { padding-bottom: 4rem !important; }
+  .mb-40 { margin-bottom: 4rem !important; }
+  .mb-24 { margin-bottom: 3rem !important; }
+  .p-10, .p-12, .p-16, .p-20 { padding: 1.5rem !important; }
+  .text-6xl { font-size: 3.5rem !important; line-height: 1 !important; }
+}
+

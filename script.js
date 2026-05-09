@@ -39,6 +39,7 @@ const aura1 = document.getElementById('aura-1');
 const aura2 = document.getElementById('aura-2');
 if (aura1 && aura2) {
   document.addEventListener('mousemove', (e) => {
+    if (window.innerWidth < 768) return;
     const moveX = (e.clientX - window.innerWidth / 2) * 0.03;
     const moveY = (e.clientY - window.innerHeight / 2) * 0.03;
     

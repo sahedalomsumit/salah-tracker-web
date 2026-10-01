@@ -1,7 +1,7 @@
 # 🕋 Salah Tracker Web
 
 <div align="center">
-  <img src="img/salah-tracker-app.png" alt="Salah Tracker App Feature Image" width="800">
+  <img src="img/Salah-Tracker-App-Showcase.png" alt="Salah Tracker App Feature Image" width="800">
   <br>
   <a href="https://play.google.com/store/apps/details?id=com.sahed.salah_tracker" target="_blank">
     <img src="https://play.google.com/intl/en_us/badges/static/images/badges/en_badge_web_generic.png" alt="Get it on Google Play" height="80">
@@ -29,6 +29,7 @@ A premium, mindful prayer companion for the modern Muslim. **Salah Tracker App**
 - **🔥 Build Your Streak**: Stay motivated with a persistent streak counter.
 - **🔒 Secure Cloud Sync**: Google Sign-In support via Supabase to keep your data safe across devices.
 - **🌓 Dynamic UI**: Support for Light, Dark, and System theme modes with premium glassmorphism effects.
+- **📱 Fully Responsive**: Optimized for a flawless experience across all devices and screen sizes.
 - **🌍 Multilingual**: Fully localized in English and Bangla (বাংলা).
 
 ---

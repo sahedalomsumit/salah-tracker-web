@@ -58,6 +58,7 @@ style.css                  Shared website theme and responsive page styles
 script.js                  Shared accessible navigation and footer year
 privacy-policy.html        Privacy policy
 data-deletion.html         Data-deletion information
+sitemap.xml                Search-engine sitemap
 img/                       App icon, showcase, screenshots, and onboarding images
 LICENSE                    MIT license
 ```

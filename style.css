@@ -111,7 +111,7 @@ html { scroll-behavior: smooth; scroll-padding-top: 100px; }
 .landing .support strong { color: #e2eddf; font-weight: 500; }
 .landing .site-footer { border-top: 1px solid #c5e1cd26; display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 24px; padding-block: 30px; }
 .landing .site-footer .brand { font-size: 14px; }
-.landing .site-footer nav { display: flex; gap: 24px; font-size: 12px; }
+.landing .site-footer nav { display: flex; flex-wrap: wrap; gap: 12px 24px; font-size: 12px; }
 .landing .site-footer a:hover { color: var(--mint); }
 @media (max-width: 1050px) {
   .landing .shell { width: calc(100% - 64px); }

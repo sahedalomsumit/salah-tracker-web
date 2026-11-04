@@ -20,7 +20,7 @@ The responsive landing page puts everyday tracking of all five Salah first, with
 - Images are referenced directly from `img/`; the website does not use `img/extra/`.
 - Mobile navigation supports closing on link selection and Escape, with accessible expanded states.
 - A skip link, visible keyboard focus, and reduced-motion support help make navigation accessible.
-- Privacy policy, data-deletion information, and optional community support links remain available.
+- Privacy policy, terms of service, data-deletion information, and optional community support links remain available.
 
 ## App features
 
@@ -57,6 +57,7 @@ index.html                 Landing page, screenshot grids, onboarding, and FAQ
 style.css                  Shared website theme and responsive page styles
 script.js                  Shared accessible navigation and footer year
 privacy-policy.html        Privacy policy
+terms-of-service.html      Terms for app use, Premium billing, and service limitations
 data-deletion.html         Data-deletion information
 sitemap.xml                Search-engine sitemap
 img/                       App icon, showcase, screenshots, and onboarding images
@@ -75,7 +76,9 @@ Then open `http://localhost:8000`. No package installation or build step is requ
 
 ## Technology
 
-All pages use semantic HTML, custom responsive CSS, vanilla JavaScript, and Google Fonts (DM Sans and Manrope). The landing page, privacy policy, and data-deletion page share the green theme, typography, navigation, footer, `style.css`, and `script.js`. No page requires Tailwind CSS or GSAP. Legal pages include a responsive reading layout and horizontally scrollable tables on narrow screens.
+All pages use semantic HTML, custom responsive CSS, vanilla JavaScript, and Google Fonts (DM Sans and Manrope). The landing page and all legal pages share the green theme, typography, navigation, footer, `style.css`, and `script.js`. No page requires Tailwind CSS or GSAP. Legal pages include a responsive reading layout and horizontally scrollable tables on narrow screens.
+
+The terms of service reflect the app's guest mode, cloud sync, prayer-time and Qaza limitations, community features, and Google Play billing. Have the legal text reviewed by qualified counsel before publication, especially when changing paid offerings or account policies.
 
 ## Updating content and images
 
